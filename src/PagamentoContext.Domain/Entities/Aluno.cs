@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using PagamentoContext.Domain.ValueObjects;
+using PagamentoContext.Shared.Entities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PagamentoContext.Domain.Entities
 {
-    public class Aluno
+    public class Aluno : Entity
     {
         private IList<Assinatura> _assinaturas;
 
-        public Aluno(string nome, string sobrenome, string documento, string email)
+        public Aluno(Nome nome, Documento documento, Email email)
         {
             Nome = nome;
-            Sobrenome = sobrenome;
             Documento = documento;
             Email = email;
             _assinaturas = new List<Assinatura>();
         }
 
-        public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
-        public string Documento { get; private set; }
-        public string Email { get; private set; }
-        public string Endereco { get; private set; }
+        public Nome Nome { get; private set; }
+        public Documento Documento { get; private set; }
+        public Email Email { get; private set; }
+        public Endereco Endereco { get; private set; }
         public IReadOnlyCollection<Assinatura> Assinaturas => _assinaturas.ToArray();
 
         public void AdicionarAssinatura(Assinatura assinatura)
