@@ -8,6 +8,9 @@ namespace PagamentoContext.Domain.ValueObjects
         {
             PrimeiroNome = primeiroNome;
             UltimoNome = ultimoNome;
+
+            if (string.IsNullOrEmpty(PrimeiroNome))
+                AddNotification("Nome.PrimeiroNome", "Nome inválido");
         }
 
         public string PrimeiroNome { get; private set; }

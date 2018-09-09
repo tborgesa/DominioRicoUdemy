@@ -15,6 +15,8 @@ namespace PagamentoContext.Domain.Entities
             Documento = documento;
             Email = email;
             _assinaturas = new List<Assinatura>();
+
+            AddNotifications(nome, documento, email);
         }
 
         public Nome Nome { get; private set; }
