@@ -32,10 +32,10 @@ namespace PagamentoContext.Domain.Entities
             foreach (var a in _assinaturas)
                 if (a.Ativo) assinaturaAtiva = true;
 
-            //Duas maneiras de fazer o mesma validação
-            //AddNotifications(new Contract().IsFalse(assinaturaAtiva, "Estudante.Assinatura", "Você já tem uma assinatura ativa"));
-            if (assinaturaAtiva)
-                AddNotification("Estudante.Assinatura", "Você já tem uma assinatura ativa");
+            AddNotifications(new Contract()
+                .IsFalse(assinaturaAtiva, "Estudante.Assinatura", "Você já tem uma assinatura ativa")
+                .IsGreaterThan(assinatura.Pagamentos.Count, 0, "Estudante.Assinatura.Pagamento", "Assinatura deve conter pelo menos um pagamento.")
+                );
 
             if (Valid)
                 _assinaturas.Add(assinatura);

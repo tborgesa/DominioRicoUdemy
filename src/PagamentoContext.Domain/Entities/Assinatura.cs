@@ -28,11 +28,10 @@ namespace PagamentoContext.Domain.Entities
         public void AdicionarPagamento(Pagamento pagamento)
         {
             AddNotifications(new Contract()
-                .IsGreaterThan(DateTime.Now, pagamento.DataPagamento, "Assinatura.Pagamentos", "A data do pagamento não pode ser futura.")
+                .IsLowerThan(pagamento.DataPagamento, DateTime.Now, "Assinatura.Pagamentos", "A data do pagamento não pode ser futura.")
                 );
 
-            if (Valid)
-                _pagamentos.Add(pagamento);
+            _pagamentos.Add(pagamento);
         }
 
         public void Inativar()
