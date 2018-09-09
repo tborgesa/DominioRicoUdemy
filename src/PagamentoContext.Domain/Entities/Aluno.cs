@@ -1,4 +1,5 @@
-﻿using PagamentoContext.Domain.ValueObjects;
+﻿using Flunt.Validations;
+using PagamentoContext.Domain.ValueObjects;
 using PagamentoContext.Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,17 @@ namespace PagamentoContext.Domain.Entities
 
         public void AdicionarAssinatura(Assinatura assinatura)
         {
+            var assinaturaAtiva = false;
             foreach (var a in _assinaturas)
-                a.Inativar();
+                if (a.Ativo) assinaturaAtiva = true;
 
-            _assinaturas.Add(assinatura);
+            //Duas maneiras de fazer o mesma validação
+            //AddNotifications(new Contract().IsFalse(assinaturaAtiva, "Estudante.Assinatura", "Você já tem uma assinatura ativa"));
+            if (assinaturaAtiva)
+                AddNotification("Estudante.Assinatura", "Você já tem uma assinatura ativa");
+
+            if (Valid)
+                _assinaturas.Add(assinatura);
         }
     }
 }

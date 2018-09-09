@@ -1,4 +1,5 @@
-﻿using PagamentoContext.Shared.Entities;
+﻿using Flunt.Validations;
+using PagamentoContext.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,12 @@ namespace PagamentoContext.Domain.Entities
 
         public void AdicionarPagamento(Pagamento pagamento)
         {
-            _pagamentos.Add(pagamento);
+            AddNotifications(new Contract()
+                .IsGreaterThan(DateTime.Now, pagamento.DataPagamento, "Assinatura.Pagamentos", "A data do pagamento não pode ser futura.")
+                );
+
+            if (Valid)
+                _pagamentos.Add(pagamento);
         }
 
         public void Inativar()

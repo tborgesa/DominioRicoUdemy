@@ -1,4 +1,5 @@
-﻿using PagamentoContext.Shared.ValueObjects;
+﻿using Flunt.Validations;
+using PagamentoContext.Shared.ValueObjects;
 
 namespace PagamentoContext.Domain.ValueObjects
 {
@@ -12,6 +13,15 @@ namespace PagamentoContext.Domain.ValueObjects
             Cidade = cidade;
             Estado = estado;
             Cep = cep;
+
+            AddNotifications(new Contract()
+                .HasMinLen(Logradouro, 3, "Endereco.Logradouro", "Logradouro deve conter pelo menos 3 caracteres.")
+                .HasMinLen(Numero, 1, "Endereco.Numero", "Número deve conter pelo menos 1 caracter.")
+                .HasMinLen(Bairro, 3, "Endereco.Bairro", "Bairro deve conter pelo menos 3 caracteres.")
+                .HasMinLen(Cidade, 3, "Endereco.Cidade", "Cidade deve conter pelo menos 3 caracteres.")
+                .HasMinLen(Estado, 3, "Endereco.Estado", "Estado deve conter pelo menos 3 caracteres.")
+                .HasMinLen(Cep, 3, "Endereco.Cep", "Cep deve conter pelo menos 3 caracteres.")
+                );
         }
 
         public string Logradouro { get; private set; }
