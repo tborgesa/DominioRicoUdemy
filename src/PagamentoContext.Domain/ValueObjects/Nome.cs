@@ -18,5 +18,10 @@ namespace PagamentoContext.Domain.ValueObjects
 
         public string PrimeiroNome { get; private set; }
         public string UltimoNome { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{PrimeiroNome} {UltimoNome}";
+        }
     }
 }

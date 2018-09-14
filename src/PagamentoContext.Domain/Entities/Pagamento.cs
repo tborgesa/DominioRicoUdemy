@@ -24,6 +24,8 @@ namespace PagamentoContext.Domain.Entities
                 .IsGreaterThan(Total, 0, "Pagamento.Total", "O valor do pagamento deve ser maior que zero.")
                 .IsGreaterOrEqualsThan(TotalPago, Total, "Pagamento.TotalPago", "O valor pago não pode ser menor que o valor do pagamento.")
                 );
+
+            AddNotifications(endereco, email);
         }
 
         public string Numero { get; private set; }
