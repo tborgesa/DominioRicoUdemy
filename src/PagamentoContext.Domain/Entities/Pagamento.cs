@@ -10,7 +10,7 @@ namespace PagamentoContext.Domain.Entities
         public Pagamento(DateTime dataPagamento, DateTime dataExpiracao, decimal total, decimal totalPago, string pagador, Documento documento,
             Endereco endereco, Email email)
         {
-            Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10).ToUpper();
+            Numero = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10).ToUpper();
             DataPagamento = dataPagamento;
             DataExpiracao = dataExpiracao;
             Total = total;
@@ -26,7 +26,7 @@ namespace PagamentoContext.Domain.Entities
                 );
         }
 
-        public string Number { get; private set; }
+        public string Numero { get; private set; }
         public DateTime DataPagamento { get; private set; }
         public DateTime DataExpiracao { get; private set; }
         public decimal Total { get; private set; }

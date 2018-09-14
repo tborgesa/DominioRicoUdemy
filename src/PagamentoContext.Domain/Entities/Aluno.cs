@@ -23,7 +23,6 @@ namespace PagamentoContext.Domain.Entities
         public Nome Nome { get; private set; }
         public Documento Documento { get; private set; }
         public Email Email { get; private set; }
-        public Endereco Endereco { get; private set; }
         public IReadOnlyCollection<Assinatura> Assinaturas => _assinaturas.ToArray();
 
         public void AdicionarAssinatura(Assinatura assinatura)
