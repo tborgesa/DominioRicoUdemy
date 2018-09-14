@@ -1,10 +1,12 @@
-﻿using PagamentoContext.Domain.Enums;
+﻿using Flunt.Notifications;
+using Flunt.Validations;
+using PagamentoContext.Domain.Enums;
 using PagamentoContext.Shared.Commands;
 using System;
 
 namespace PagamentoContext.Domain.Commands
 {
-    public class CreateAssinaturaPayPalCommand : ICommand
+    public class CreateAssinaturaPayPalCommand : Notifiable, ICommand
     {
         public string PrimeiroNome { get; set; }
         public string UltimoNome { get; set; }
@@ -28,5 +30,14 @@ namespace PagamentoContext.Domain.Commands
         public string Estado { get; set; }
         public string Cep { get; set; }
 
+        public void Validate()
+        {
+            //Fazer todas as validações simples.
+            //Isso evita chegar nas regras de negócio complexas (que gastam recurso do Banco de Dados).
+            AddNotifications(new Contract()
+                .HasMinLen(PrimeiroNome, 3, "PrimeiroNome", "Nome deve conter pelo menos 3 caracteres.")
+                .HasMinLen(UltimoNome, 3, "UltimoName", "Sobrenome deve conter pelo menos 3 caracteres.")
+                .HasMaxLen(PrimeiroNome, 40, "PrimeiroNome", " deve conter até 40 caracteres."));
+        }
     }
 }
