@@ -6,7 +6,7 @@ using System;
 namespace PagamentoContext.Tests.Entities
 {
     [TestClass]
-    public class AlunoTestes
+    public class AlunoTests
     {
         private readonly Nome _nome;
         private readonly Documento _documento;
@@ -15,7 +15,7 @@ namespace PagamentoContext.Tests.Entities
         private readonly Aluno _aluno;
         private readonly Assinatura _assinatura;
 
-        public AlunoTestes()
+        public AlunoTests()
         {
             _nome = new Nome("Thiago", "Borges");
             _documento = new Documento("98575444018", Domain.Enums.TipoDocumento.Cpf);

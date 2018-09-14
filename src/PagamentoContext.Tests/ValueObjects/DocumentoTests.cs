@@ -4,7 +4,7 @@ using PagamentoContext.Domain.ValueObjects;
 namespace PagamentoContext.Tests.ValueObjects
 {
     [TestClass]
-    public class DocumentoTestes
+    public class DocumentoTests
     {
         //Red, Green, Refactor
         [TestMethod]
