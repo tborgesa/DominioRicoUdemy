@@ -71,6 +71,10 @@ namespace PagamentoContext.Domain.Handlers
             // Agrupar as Validações
             AddNotifications(aluno, assinatura, pagamento);
 
+            // Checar as notificações
+            if (Invalid)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
+
             // Salvar as Informações
             _repository.CriarAssinatura(aluno);
 
@@ -125,6 +129,10 @@ namespace PagamentoContext.Domain.Handlers
 
             // Agrupar as Validações
             AddNotifications(aluno, assinatura, pagamento);
+
+            // Checar as notificações
+            if (Invalid)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
 
             // Salvar as Informações
             _repository.CriarAssinatura(aluno);
@@ -182,6 +190,10 @@ namespace PagamentoContext.Domain.Handlers
 
             // Agrupar as Validações
             AddNotifications(aluno, assinatura, pagamento);
+
+            // Checar as notificações
+            if (Invalid)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura");
 
             // Salvar as Informações
             _repository.CriarAssinatura(aluno);
